@@ -184,7 +184,7 @@ export default function AppPage() {
                   through gamification.
                 </p>
                 <p>
-                  Whether you're tracking your water intake, monitoring sleep patterns, maintaining a fasting schedule, 
+                  Whether you&apos;re tracking your water intake, monitoring sleep patterns, maintaining a fasting schedule, 
                   logging workouts, or building discipline through monk mode, ZeninX provides the tools and motivation 
                   you need to ascend the ranks and achieve your goals.
                 </p>
@@ -197,7 +197,7 @@ export default function AppPage() {
                 className="mt-6 p-6 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-xl border border-indigo-200 dark:border-indigo-800"
               >
                 <p className="text-sm text-gray-700 dark:text-gray-300">
-                  <strong className="text-indigo-600 dark:text-indigo-400">Current Status:</strong> ZeninX is in active beta development. We're looking for beta testers 
+                  <strong className="text-indigo-600 dark:text-indigo-400">Current Status:</strong> ZeninX is in active beta development. We&apos;re looking for beta testers 
                   to help us refine the app and provide feedback. Join now to get early access!
                 </p>
               </motion.div>

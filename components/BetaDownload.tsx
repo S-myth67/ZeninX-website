@@ -90,7 +90,7 @@ export default function BetaDownload() {
                     className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all"
                   />
                   <p className="mt-2 text-sm text-indigo-100">
-                    We'll send you beta access instructions and download links
+                    We&apos;ll send you beta access instructions and download links
                   </p>
                 </div>
 
@@ -135,7 +135,7 @@ export default function BetaDownload() {
                 </motion.div>
                 <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
                 <p className="text-indigo-100">
-                  We've received your request. Check your email for beta access instructions.
+                  We&apos;ve received your request. Check your email for beta access instructions.
                 </p>
               </motion.div>
             )}

@@ -33,7 +33,7 @@ export default function Contact() {
           Get In Touch
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+          We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
         </p>
       </div>
 

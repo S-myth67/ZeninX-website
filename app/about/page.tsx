@@ -16,12 +16,12 @@ export default function About() {
             Our Mission
           </h2>
           <p className="text-gray-600 dark:text-gray-300 mb-4">
-            At ZeninX, we believe that building better habits shouldn't feel like a chore. Our mission 
+            At ZeninX, we believe that building better habits shouldn&apos;t feel like a chore. Our mission 
             is to transform the way people approach personal development by making habit tracking engaging, 
             motivating, and fun through gamification.
           </p>
           <p className="text-gray-600 dark:text-gray-300">
-            We're committed to helping you build consistency, track your progress, and achieve your wellness 
+            We&apos;re committed to helping you build consistency, track your progress, and achieve your wellness 
             goals through our unique ranking system that turns daily habits into an exciting journey from 
             Iron to Radiant.
           </p>
