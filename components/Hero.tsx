@@ -4,7 +4,6 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import Image from "next/image";
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -15,7 +14,6 @@ export default function Hero() {
 
   useEffect(() => {
     if (heroRef.current && titleRef.current) {
-      const tl = gsap.timeline();
       
       // Animate floating particles
       const particles = heroRef.current.querySelectorAll(".particle");
@@ -61,7 +59,7 @@ export default function Hero() {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99],
+        ease: [0.6, -0.05, 0.01, 0.99] as const,
       },
     },
   };

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform, useInView } from "framer-motion";
-import { X, Maximize2, Smartphone, Sparkles } from "lucide-react";
+import { X, Maximize2, Smartphone } from "lucide-react";
 
 interface CreativeImageGalleryProps {
   images: string[];
