@@ -34,10 +34,11 @@ function ScrollImage({
   const ref = useRef(null);
   const isInView = useInView(ref, { 
     once: true, 
-    margin: "0px",
+    margin: "200px", // Start loading 200px before image enters viewport
     amount: 0.1
   });
   const [hovered, setHovered] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
     <motion.div
@@ -75,16 +76,20 @@ function ScrollImage({
           
           {/* Screen Content */}
           <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gray-100 dark:bg-gray-800">
-            {!isInView ? (
-              <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse" />
-            ) : (
+            {!imageLoaded && (
+              <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse z-0" />
+            )}
+            {isInView && (
               <Image
                 src={image}
                 alt={label}
                 fill
-                className="object-contain p-1 transition-transform duration-500 group-hover:scale-[1.02]"
-                loading="lazy"
+                className={`object-contain p-1 transition-transform duration-500 group-hover:scale-[1.02] ${imageLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
+                loading={index < 3 ? "eager" : "lazy"}
+                priority={index < 2}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                onLoad={() => setImageLoaded(true)}
+                quality={85}
               />
             )}
             
@@ -153,6 +158,7 @@ export default function CreativeImageGallery({ images, heroImage }: CreativeImag
         onClick={() => handleImageClick(heroImage)}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
+        <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse" />
         <Image
           src={heroImage}
           alt="App Hero Screenshot"
@@ -160,7 +166,8 @@ export default function CreativeImageGallery({ images, heroImage }: CreativeImag
           className="object-contain p-4 group-hover:scale-[1.02] transition-transform duration-300"
           priority
           sizes="100vw"
-          quality={85}
+          quality={75}
+          fetchPriority="high"
         />
         <div className="absolute inset-0 z-20 flex items-end p-8">
           <motion.div
@@ -190,13 +197,7 @@ export default function CreativeImageGallery({ images, heroImage }: CreativeImag
       {/* Enhanced Screenshots Section */}
       <div className="relative">
         {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="text-center mb-12"
-          >
+          <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 mb-4">
               <Smartphone className="w-6 h-6 text-purple-500" />
               <span className="text-sm font-semibold text-purple-500 dark:text-purple-400 uppercase tracking-wider">
@@ -209,7 +210,7 @@ export default function CreativeImageGallery({ images, heroImage }: CreativeImag
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Discover every feature and screen of ZeninX. Click on any screenshot to view it in full detail.
             </p>
-          </motion.div>
+          </div>
 
         {/* Enhanced Grid Gallery */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
