@@ -81,11 +81,12 @@ export default function Hero() {
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(30)].map((_, i) => {
           // Generate stable random values based on index to avoid hydration mismatch
+          // Round to 2 decimal places to ensure exact match between server and client
           const seed = i * 0.1;
-          const left = (Math.sin(seed) * 50 + 50);
-          const top = (Math.cos(seed * 2) * 50 + 50);
-          const xOffset = Math.sin(seed * 3) * 20;
-          const duration = 3 + (Math.sin(seed * 4) * 0.5 + 0.5) * 2;
+          const left = Math.round((Math.sin(seed) * 50 + 50) * 100) / 100;
+          const top = Math.round((Math.cos(seed * 2) * 50 + 50) * 100) / 100;
+          const xOffset = Math.round(Math.sin(seed * 3) * 20 * 100) / 100;
+          const duration = Math.round((3 + (Math.sin(seed * 4) * 0.5 + 0.5) * 2) * 100) / 100;
           
           return (
             <motion.div
