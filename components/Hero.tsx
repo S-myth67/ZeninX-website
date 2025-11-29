@@ -79,27 +79,36 @@ export default function Hero() {
 
       {/* Animated Background Particles */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(30)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="particle absolute w-3 h-3 bg-white/30 rounded-full blur-sm"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              x: [0, Math.random() * 40 - 20, 0],
-              scale: [1, 1.5, 1],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: i * 0.1,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
+        {[...Array(30)].map((_, i) => {
+          // Generate stable random values based on index to avoid hydration mismatch
+          const seed = i * 0.1;
+          const left = (Math.sin(seed) * 50 + 50);
+          const top = (Math.cos(seed * 2) * 50 + 50);
+          const xOffset = Math.sin(seed * 3) * 20;
+          const duration = 3 + (Math.sin(seed * 4) * 0.5 + 0.5) * 2;
+          
+          return (
+            <motion.div
+              key={i}
+              className="particle absolute w-3 h-3 bg-white/30 rounded-full blur-sm"
+              style={{
+                left: `${left}%`,
+                top: `${top}%`,
+              }}
+              animate={{
+                y: [0, -30, 0],
+                x: [0, xOffset, 0],
+                scale: [1, 1.5, 1],
+              }}
+              transition={{
+                duration: duration,
+                repeat: Infinity,
+                delay: i * 0.1,
+                ease: "easeInOut",
+              }}
+            />
+          );
+        })}
       </div>
 
       {/* Gradient Orbs with Animation */}
