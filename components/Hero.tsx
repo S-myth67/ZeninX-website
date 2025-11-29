@@ -77,9 +77,9 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[url('/images/dash_log_profile_dark.png')] bg-cover bg-center mix-blend-overlay" />
       </motion.div>
 
-      {/* Animated Background Particles */}
+      {/* Animated Background Particles - Reduced for better performance */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(30)].map((_, i) => {
+        {[...Array(15)].map((_, i) => {
           // Generate stable random values based on index to avoid hydration mismatch
           // Round to 2 decimal places to ensure exact match between server and client
           const seed = i * 0.1;
