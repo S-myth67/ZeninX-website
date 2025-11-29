@@ -1,16 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { useRef } from "react";
-import { useInView } from "framer-motion";
-
-// Note: Content is now visible immediately, animations are subtle
-
 export default function About() {
-  const missionRef = useRef(null);
-  const visionRef = useRef(null);
-  const missionInView = useInView(missionRef, { once: true, margin: "-100px" });
-  const visionInView = useInView(visionRef, { once: true, margin: "-100px" });
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -24,12 +12,7 @@ export default function About() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
-        <motion.div
-          ref={missionRef}
-          initial={{ opacity: 1, x: 0 }}
-          animate={missionInView ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
-          transition={{ duration: 0.3 }}
-        >
+        <div>
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
             Our Mission
           </h2>
@@ -43,14 +26,8 @@ export default function About() {
             goals through our unique ranking system that turns daily habits into an exciting journey from
             Iron to Radiant.
           </p>
-        </motion.div>
-        <motion.div
-          ref={visionRef}
-          initial={{ opacity: 1, x: 0 }}
-          animate={visionInView ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
-          transition={{ duration: 0.3 }}
-          className="bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-500 rounded-2xl p-10 text-white shadow-2xl relative overflow-hidden"
-        >
+        </div>
+        <div className="bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-500 rounded-2xl p-10 text-white shadow-2xl relative overflow-hidden">
           <div className="absolute inset-0 bg-black/10" />
           <div className="relative z-10">
             <h3 className="text-3xl font-bold mb-6">Our Vision</h3>
@@ -60,7 +37,7 @@ export default function About() {
               where personal growth feels rewarding and achievable for everyone.
             </p>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       <div className="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl p-10 shadow-xl border border-gray-200 dark:border-gray-700">
