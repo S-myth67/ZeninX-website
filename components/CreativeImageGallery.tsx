@@ -34,8 +34,8 @@ function ScrollImage({
   const ref = useRef(null);
   const isInView = useInView(ref, { 
     once: true, 
-    margin: "-100px",
-    amount: 0.2
+    margin: "200px",
+    amount: 0.1
   });
   const [hovered, setHovered] = useState(false);
 
@@ -76,13 +76,18 @@ function ScrollImage({
           
           {/* Screen Content */}
           <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gray-100 dark:bg-gray-800">
-            <Image
-              src={image}
-              alt={label}
-              fill
-              className="object-contain p-1 transition-transform duration-500 group-hover:scale-[1.02]"
-              unoptimized
-            />
+            {!isInView ? (
+              <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse" />
+            ) : (
+              <Image
+                src={image}
+                alt={label}
+                fill
+                className="object-contain p-1 transition-transform duration-500 group-hover:scale-[1.02]"
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            )}
             
             {/* Hover Overlay */}
             <motion.div
@@ -158,13 +163,15 @@ export default function CreativeImageGallery({ images, heroImage }: CreativeImag
         onClick={() => handleImageClick(heroImage)}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
+        <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse" />
         <Image
           src={heroImage}
           alt="App Hero Screenshot"
           fill
           className="object-contain p-4 group-hover:scale-[1.02] transition-transform duration-[2000ms]"
           priority
-          unoptimized
+          sizes="100vw"
+          quality={85}
         />
         <div className="absolute inset-0 z-20 flex items-end p-8">
           <motion.div
@@ -272,8 +279,8 @@ export default function CreativeImageGallery({ images, heroImage }: CreativeImag
                   width={800}
                   height={1600}
                   className="max-w-full max-h-full w-auto h-auto object-contain"
-                  unoptimized
                   priority
+                  sizes="100vw"
                 />
               </div>
             </motion.div>
