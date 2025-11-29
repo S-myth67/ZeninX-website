@@ -34,7 +34,7 @@ function ScrollImage({
   const ref = useRef(null);
   const isInView = useInView(ref, { 
     once: true, 
-    margin: "200px",
+    margin: "0px",
     amount: 0.1
   });
   const [hovered, setHovered] = useState(false);
@@ -45,10 +45,9 @@ function ScrollImage({
       initial={{ opacity: 0, y: 50, scale: 0.95 }}
       animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.95 }}
       transition={{ 
-        duration: 0.5, 
-        delay: index * 0.08,
-        type: "spring",
-        stiffness: 100
+        duration: 0.4, 
+        delay: index * 0.05,
+        ease: "easeOut"
       }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
@@ -125,16 +124,7 @@ function ScrollImage({
         </div>
 
         {/* Glow Effect */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-purple-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity -z-10"
-          animate={{
-            scale: hovered ? [1, 1.1, 1] : 1,
-          }}
-          transition={{
-            duration: 2,
-            repeat: hovered ? Infinity : 0,
-          }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-purple-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
       </div>
     </motion.div>
   );
@@ -163,12 +153,11 @@ export default function CreativeImageGallery({ images, heroImage }: CreativeImag
         onClick={() => handleImageClick(heroImage)}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
-        <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse" />
         <Image
           src={heroImage}
           alt="App Hero Screenshot"
           fill
-          className="object-contain p-4 group-hover:scale-[1.02] transition-transform duration-[2000ms]"
+          className="object-contain p-4 group-hover:scale-[1.02] transition-transform duration-300"
           priority
           sizes="100vw"
           quality={85}
@@ -201,32 +190,26 @@ export default function CreativeImageGallery({ images, heroImage }: CreativeImag
       {/* Enhanced Screenshots Section */}
       <div className="relative">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
           <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ type: "spring", delay: 0.2 }}
-            className="inline-flex items-center gap-2 mb-4"
+            transition={{ duration: 0.4 }}
+            className="text-center mb-12"
           >
-            <Smartphone className="w-6 h-6 text-purple-500" />
-            <span className="text-sm font-semibold text-purple-500 dark:text-purple-400 uppercase tracking-wider">
-              Explore Every Screen
-            </span>
+            <div className="inline-flex items-center gap-2 mb-4">
+              <Smartphone className="w-6 h-6 text-purple-500" />
+              <span className="text-sm font-semibold text-purple-500 dark:text-purple-400 uppercase tracking-wider">
+                Explore Every Screen
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 dark:text-white mb-4">
+              All Screenshots
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Discover every feature and screen of ZeninX. Click on any screenshot to view it in full detail.
+            </p>
           </motion.div>
-          <h2 className="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4">
-            All Screenshots
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Discover every feature and screen of ZeninX. Click on any screenshot to view it in full detail.
-          </p>
-        </motion.div>
 
         {/* Enhanced Grid Gallery */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
